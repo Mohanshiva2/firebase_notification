@@ -123,13 +123,29 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('PushNotification'),
-      ),
-      body: SafeArea(
+
+      body: Container(
+        padding: EdgeInsets.only(top: 500),
+        height: 1500,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: [Colors.blueAccent,Color(0xffE5E5E5)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight
+          )
+        ),
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Center(
+              child: Text(
+                "Firebase Notification Testing",
+                style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 30
+                ),
+              ),
+            )
             // Text('FlutterPushNotification',
             //   textAlign: TextAlign.center,
             //   style: TextStyle(
