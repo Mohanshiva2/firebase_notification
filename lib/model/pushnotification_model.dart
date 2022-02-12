@@ -8,8 +8,6 @@ class PushNotification {
   String? body;
   String? dataTitle;
   String? dataBody;
-
-
 }
 
 

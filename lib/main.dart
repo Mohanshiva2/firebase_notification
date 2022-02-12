@@ -126,17 +126,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
       body: Container(
         padding: EdgeInsets.only(top: 500),
-        height: 1500,
+        height: double.infinity,
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
-              colors: [Colors.blueAccent,Color(0xffE5E5E5)],
+              colors: [Colors.blueAccent,Color(0xffE5E5E5),],
               begin: Alignment.topLeft,
-              end: Alignment.bottomRight
+              end: Alignment.bottomRight,
           )
         ),
         child: Column(
-          children: [
+          children: const [
             Center(
               child: Text(
                 "Firebase Notification Testing",
@@ -183,5 +183,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
