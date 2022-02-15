@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import 'model/pushnotification_model.dart';
@@ -58,9 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
       badge: true,
       provisional: false,
       sound: true,
-
     );
-
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
 
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
@@ -71,6 +70,8 @@ class _HomeScreenState extends State<HomeScreen> {
           dataTitle: message.data['title'],
           dataBody: message.data['body'],
         );
+
+
         setState(() {
           _totalNotificationCounter++;
           _notificationInfo = notification;
@@ -78,20 +79,28 @@ class _HomeScreenState extends State<HomeScreen> {
 
         if (notification != null) {
           showSimpleNotification(Text(_notificationInfo!.title!),
-            leading: NotificationBadge(
-                totalNotification: _totalNotificationCounter),
+            leading: NotificationBadge(totalNotification: _totalNotificationCounter),
             subtitle: Text(_notificationInfo!.body!),
-            background: Colors.blue.shade700,
+            background: Colors.white,
             duration: Duration(seconds: 2),
           );
         }
-
       });
     }
     else {
       print('permission declined by user');
     }
   }
+
+  // AndroidNotificationDetails androidNotificationsDetails = const AndroidNotificationDetails(
+  //   'your other channel id',
+  //   'your other channel name',
+  //   importance: Importance.high,
+  //   priority: Priority.high,
+  //   enableLights: true,
+  //   playSound: true,
+  //   sound: RawResourceAndroidNotificationSound('notification'),
+  // );
 
   //check the initial message that we receive
   checkForInitialMessage() async {
@@ -117,13 +126,14 @@ class _HomeScreenState extends State<HomeScreen> {
     registerNotification();
     _totalNotificationCounter = 0;
     super.initState();
-
   }
+
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Container(
         padding: EdgeInsets.only(top: 500),
         height: double.infinity,
